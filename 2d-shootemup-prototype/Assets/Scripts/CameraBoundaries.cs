@@ -7,7 +7,7 @@ public class CameraBoundaries : MonoBehaviour
 {
     /**
      * Code created by Press Start, a great GameDev Youtube Channel.
-     *  
+     * Link of the video: https://www.youtube.com/watch?v=ailbszpt_AI
      */
 
     #region Components
