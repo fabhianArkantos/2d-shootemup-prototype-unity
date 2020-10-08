@@ -6,7 +6,6 @@ public class BulletBehaviour : MonoBehaviour
 {
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        //TODO: Implementate destroy GameObject like player or enemies.
         Destroy(collision.gameObject);
         Destroy(gameObject);
     }
@@ -16,15 +15,5 @@ public class BulletBehaviour : MonoBehaviour
         Destroy(gameObject);
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
 }
