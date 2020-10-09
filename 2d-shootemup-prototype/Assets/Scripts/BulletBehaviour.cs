@@ -8,6 +8,10 @@ public class BulletBehaviour : MonoBehaviour
     {
         Destroy(collision.gameObject);
         Destroy(gameObject);
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            FindObjectOfType<GameManager>().EndGame();
+        }
     }
 
     private void OnBecameInvisible()

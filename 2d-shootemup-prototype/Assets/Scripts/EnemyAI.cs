@@ -7,9 +7,12 @@ using UnityEngine;
 public class EnemyAI : MonoBehaviour
 {
     private Vector2 reachPoint;
+    [SerializeField]
     private float speed = 5f;
     private float rotateFix = 90f;
     private Transform player;
+    [SerializeField]
+    private float waitForFire = 3f;
 
 
     private Rigidbody2D rb;
@@ -45,7 +48,7 @@ public class EnemyAI : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(5f);
+            yield return new WaitForSeconds(waitForFire);
             fireScript.Fire();
             yield return new WaitForSeconds(0.5f);
             fireScript.Fire();
