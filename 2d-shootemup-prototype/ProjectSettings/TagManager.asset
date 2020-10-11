@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Bullet
   - Enemy
+  - Score
   layers:
   - Default
   - TransparentFX
@@ -42,4 +43,13 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 1211706369
+    locked: 0
+  - name: Game Objects
+    uniqueID: 1945316823
+    locked: 0
+  - name: UI
+    uniqueID: 4111579941
     locked: 0

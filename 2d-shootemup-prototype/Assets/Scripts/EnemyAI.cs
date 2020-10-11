@@ -17,6 +17,8 @@ public class EnemyAI : MonoBehaviour
 
     private Rigidbody2D rb;
     private FireScript fireScript;
+    [SerializeField]
+    private Transform[] firePoints;
 
 
     // Start is called before the first frame update
@@ -33,7 +35,10 @@ public class EnemyAI : MonoBehaviour
     void FixedUpdate()
     {
         transform.position = Vector2.MoveTowards(transform.position, reachPoint, speed * Time.deltaTime);
-        HandleAiming();
+        if (GameObject.FindGameObjectWithTag("Player") != null)
+        {
+            HandleAiming();
+        }   
     }
 
     private void HandleAiming()
@@ -49,11 +54,14 @@ public class EnemyAI : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(waitForFire);
-            fireScript.Fire();
+            fireScript.Fire(firePoints[0]);
+            fireScript.Fire(firePoints[1]);
             yield return new WaitForSeconds(0.5f);
-            fireScript.Fire();
+            fireScript.Fire(firePoints[0]);
+            fireScript.Fire(firePoints[1]);
             yield return new WaitForSeconds(0.5f);
-            fireScript.Fire();
+            fireScript.Fire(firePoints[0]);
+            fireScript.Fire(firePoints[1]);
         }
     }
     

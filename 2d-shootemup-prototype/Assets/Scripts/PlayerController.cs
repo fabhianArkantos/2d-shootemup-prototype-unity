@@ -13,11 +13,15 @@ public class PlayerController : MonoBehaviour
 
     #region Variables
     private Vector2 movement;
+    private bool isMoving;
     #endregion
 
     #region Components
     private Rigidbody2D rb2d;
     private FireScript fireScript;
+    [SerializeField]
+    private Transform[] firePoints;
+    private Animator animator;
     #endregion
 
     // Start is called before the first frame update
@@ -25,6 +29,7 @@ public class PlayerController : MonoBehaviour
     {
         rb2d = GetComponent<Rigidbody2D>();
         fireScript = GetComponent<FireScript>();
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -32,15 +37,32 @@ public class PlayerController : MonoBehaviour
     {
         movement = new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
+        if (movement.x > 0 || movement.y > 0 || movement.x < 0 || movement.y < 0)
+        {
+            isMoving = true;
+            animator.SetBool("isMoving",isMoving);
+        }
+        else
+        {
+            isMoving = false;
+            animator.SetBool("isMoving", isMoving);
+        }
+
         if (Input.GetButtonDown("Fire1"))
         {
-            fireScript.Fire();
+            fireScript.Fire(firePoints[0]);
+            fireScript.Fire(firePoints[1]);
         }
     }
 
     private void FixedUpdate()
     {
-        rb2d.MovePosition((Vector2) transform.position + movement * speed * Time.deltaTime);
-        
+        Move();
+
+    }
+
+    private void Move()
+    {
+        rb2d.MovePosition((Vector2)transform.position + movement * speed * Time.deltaTime);
     }
 }
